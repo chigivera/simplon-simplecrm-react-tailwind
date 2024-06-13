@@ -10,27 +10,31 @@ module.exports = {
   },
   module: {
     rules: [
-      // Règle pour les fichiers.js et.jsx
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options : {
-            presets:['@babel/preset-env','@babel/preset-react']
-          }
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
       },
-      // Règle pour les fichiers CSS
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
-
       },
-      // Règle pour les fichiers image
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         use: ['file-loader'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.(json)$/,
+        use: ['json-loader'],
       },
     ],
   },
@@ -42,4 +46,7 @@ module.exports = {
       template: './public/index.html',
     }),
   ],
+    devServer: {
+    historyApiFallback: true,
+  },
 };

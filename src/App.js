@@ -1,15 +1,25 @@
-import React from "react";
-import {ThemeProvider} from "./context/themeContext"; // Ensure this import path is correct
+import React from 'react';
+import ThemeContextProvider from './context/ThemeContext';
+import Layout from './Layout';
+import './index.css'
+import { Routes,Route, Navigate } from 'react-router-dom';
+function App() {
+  return (
+    <div className="App">
+      <ThemeContextProvider>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<h1>main</h1>}/>
+            <Route path='/factures' element={<h1>factures</h1>}/>
+            <Route path='/produits' element={<h1>produits</h1>}/>
+            <Route path='/clients' element={<h1>clients</h1>}/>
+            <Route path='/*' element={<Navigate replace to="/" />} />
 
-class App extends React.Component {
-  render() {
-    return (
-      <ThemeProvider>
-        <h1>Hello World</h1>
-        {/* Include other components that will consume the theme context */}
-      </ThemeProvider>
-    );
-  }
+          </Routes>
+        </Layout>
+      </ThemeContextProvider>
+    </div>
+  );
 }
 
 export default App;
