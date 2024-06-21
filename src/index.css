@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 .App {
-    @apply p-0 m-0 bg-slate-400 min-h-screen; /* Changed from min-h-20 to min-h-screen */
+    @apply p-0 m-0  min-h-screen; /* Changed from min-h-20 to min-h-screen */
 }
 .card {
     @apply bg-white rounded;

@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./layout/Sidebar";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import DataContextProvider from "./context/DataContext";
 
 
 class Layout extends React.Component {
@@ -11,8 +12,12 @@ class Layout extends React.Component {
             <Navbar/>
             <div className="flex">
             <Sidebar/>
-            {this.props.children}
+            <div className="relative bg-violet-400">
+            <DataContextProvider>
 
+            {this.props.children}
+            </DataContextProvider>
+            </div>
             </div>
             <Footer/>
             </>

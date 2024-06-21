@@ -1,7 +1,9 @@
 import React from "react";
 import { ThemeContext } from "../context/ThemeContext"; // Ensure this import path is correct
-import { AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineSun,AiOutlineMoon,AiOutlinePlus} from "react-icons/ai";
+
 import Logo from '../assets/logo.png'
+import { Navigate } from "react-router-dom";
 class Navbar extends React.Component {
         static contextType = ThemeContext; // Define the contextType
 
@@ -24,19 +26,11 @@ class Navbar extends React.Component {
                         <img src={Logo} alt="d" />
                         <h1 className="pl-3">SimpleCRM</h1>
                     </div>
-                    <div className="options w-80 inline-flex flex-row justify-between items-center">
-                        <a href="/"><AiOutlineSetting /></a>
-                        <a href="/"><AiOutlineSetting /></a>
-                        <button onClick={toggleTheme}><AiOutlineSetting /></button>
-                        <div className="action">
-                            <select name="" id="">
-                                <option value="">Action</option>
-                            </select>
-                        </div>
-                        <div className="action">
-                            <select name="" id="">
-                                <option value="">Profile</option>
-                            </select>
+                    <div className="options w-auto inline-flex flex-row justify-between items-center">
+                        <button onClick={toggleTheme}>{isLightTheme ? <AiOutlineSun/> : <AiOutlineMoon/> }</button>
+                        <a href='/ajouterFacture' className="items-center flex ml-3 px-3 border-2 border-violet-400 bg-violet-400 hover:bg-white"><AiOutlinePlus className="mr-2"/>Creer Facture</a>
+                        <div className="action mx-3">
+                           Profile
                         </div>
                     </div>
                 </nav>

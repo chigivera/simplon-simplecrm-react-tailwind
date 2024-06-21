@@ -137,7 +137,7 @@ return {
             light: colors.blue[100],
           },
           background: {
-            default: "#fcfcfc",
+            default: "#000000",
           },
         }
         : {
@@ -154,7 +154,7 @@ return {
             light: colors.blue[100],
           },
           background: {
-            default: colors.orange[400],
+            default: '#fcfcfc',
           },
         }),
   },

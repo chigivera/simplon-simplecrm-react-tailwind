@@ -1,25 +1,37 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ThemeContextProvider from './context/ThemeContext';
 import Layout from './Layout';
 import './index.css'
 import { Routes,Route, Navigate } from 'react-router-dom';
-function App() {
-  return (
-    <div className="App">
-      <ThemeContextProvider>
-        <Layout>
-          <Routes>
-            <Route path='/' element={<h1>main</h1>}/>
-            <Route path='/factures' element={<h1>factures</h1>}/>
-            <Route path='/produits' element={<h1>produits</h1>}/>
-            <Route path='/clients' element={<h1>clients</h1>}/>
-            <Route path='/*' element={<Navigate replace to="/" />} />
+import Dashboard from './pages/Dashboard';
+import FactureList from './components/FactureList';
+import CreerFacture from './components/CreerFacture';
+import ArticleList from './components/ArticleList';
+import ClientList from './components/ClientList';
+import CreerClient from './components/CreerClient';
+class App extends Component {
+  render() {
 
-          </Routes>
-        </Layout>
-      </ThemeContextProvider>
-    </div>
-  );
+    return (
+      <div className="App">
+        <ThemeContextProvider>
+          <Layout>
+            <Routes>
+              <Route path='/'  element={<Dashboard/>}/>
+              <Route path='/factures' element={<FactureList/>}/>
+              <Route path='/produits' element={<ArticleList/>}/>
+              <Route path='/clients' element={<ClientList/>}/>
+              <Route path='/settings' element={<h1>Settings</h1>}/>
+              <Route path='/ajouterFacture' element={<CreerFacture/>}/>
+              <Route path='/ajouterClient' element={<CreerClient/>}/>
+              <Route path='/*' element={<Navigate replace to="/" />} />
+  
+            </Routes>
+          </Layout>
+        </ThemeContextProvider>
+      </div>
+    );
+  }
 }
 
 export default App;
