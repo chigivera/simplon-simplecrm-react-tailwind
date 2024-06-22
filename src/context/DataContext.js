@@ -2,62 +2,7 @@ import React, { createContext,Component } from "react"
 
 // Initialize localStorage
 const factures = [
-    {
-      "_id": "666b3867df03285533e56ace",
-      "name": "Terry Mcgowan",
-      "date": "Thu Apr 15 2010 12:44:04 GMT+0000 (GMT)",
-      "ht": "1,983.29",
-      "tva": "3,044.40",
-      "ttc": "1,792.37"
-    },
-    {
-      "_id": "666b38673770824055fd585b",
-      "name": "Spencer Golden",
-      "date": "Wed Aug 14 1996 02:04:08 GMT+0000 (GMT)",
-      "ht": "1,094.67",
-      "tva": "2,781.28",
-      "ttc": "1,838.24"
-    },
-    {
-      "_id": "666b38676c1ccfd1a1016c8c",
-      "name": "Powell Dodson",
-      "date": "Tue Jul 19 1988 10:06:19 GMT+0000 (GMT)",
-      "ht": "3,180.32",
-      "tva": "2,144.45",
-      "ttc": "3,007.98"
-    },
-    {
-      "_id": "666b386734d7ee22031affb5",
-      "name": "Patel Pope",
-      "date": "Wed Mar 20 2013 21:24:53 GMT+0000 (GMT)",
-      "ht": "3,499.96",
-      "tva": "1,662.72",
-      "ttc": "2,582.57"
-    },
-    {
-      "_id": "666b38676da4ed8bbf16e8a0",
-      "name": "Ebony Guerrero",
-      "date": "Sun May 03 1970 04:36:23 GMT+0000 (GMT)",
-      "ht": "1,650.94",
-      "tva": "3,494.40",
-      "ttc": "2,428.16"
-    },
-    {
-      "_id": "666b38673882e3346a4eceb4",
-      "name": "Frederick Vazquez",
-      "date": "Fri Aug 11 2006 10:54:55 GMT+0000 (GMT)",
-      "ht": "2,610.38",
-      "tva": "2,893.04",
-      "ttc": "2,542.95"
-    },
-    {
-      "_id": "666b38679f5a991c52f80b14",
-      "name": "Weaver Franks",
-      "date": "Thu Mar 01 2007 01:55:17 GMT+0000 (GMT)",
-      "ht": "2,991.53",
-      "tva": "3,004.90",
-      "ttc": "3,305.79"
-    }
+   
   ]
 
   const clients = [
@@ -180,10 +125,33 @@ export default class DataContextProvider extends Component {
         // Bind the update method
         this.updateData = this.updateData.bind(this);
     }
-    getRevenue(){}
-    getTotalClient() {}
-    getMostPopularProduit() {}
-    getLowestStockProduit() {}
+    getRevenue() {
+      return this.state.facturesData.reduce((total, facture) => {
+        return total + parseFloat(facture.ttc.replace(/,/g, ''));
+      }, 0).toFixed(2);
+    }
+  
+    getTotalClient() {
+      return this.state.clientsData.length;
+    }
+  
+    getTotalFacture() {
+      return this.state.facturesData.length;
+    }
+    getTotalProduit() {
+      return this.state.produitsData.length;
+    }
+    getMostPopularProduit() {
+      return this.state.produitsData.reduce((max, produit) => {
+        return produit.stock > max.stock ? produit : max;
+      }, this.state.produitsData[0]);
+    }
+  
+    getLowestStockProduit() {
+      return this.state.produitsData.reduce((min, produit) => {
+        return produit.stock < min.stock ? produit : min;
+      }, this.state.produitsData[0]);
+    }
     // Method to update localStorage when state changes
     updateData(key, value) {
         this.setState({ [key]: value }, () => {
@@ -197,7 +165,13 @@ export default class DataContextProvider extends Component {
                 facturesData: this.state.facturesData,
                 clientsData: this.state.clientsData,
                 produitsData: this.state.produitsData,
-                updateData: this.updateData // Pass the update method to context
+                updateData: this.updateData, // Pass the update method to context
+                getRevenue: this.getRevenue.bind(this),
+                getTotalClient: this.getTotalClient.bind(this),
+                getMostPopularProduit: this.getMostPopularProduit.bind(this),
+                getLowestStockProduit: this.getLowestStockProduit.bind(this),
+                getTotalFacture:this.getTotalFacture.bind(this),
+                getTotalProduit:this.getTotalProduit.bind(this)
             }}>
                 {this.props.children}
             </DataContext.Provider>

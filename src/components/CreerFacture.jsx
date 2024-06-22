@@ -35,9 +35,9 @@ class CreerFacture extends Component {
   handleChange = (event, index) => {
     const { name, value } = event.target;
     if (name === "article") {
-      const {article,prix} = JSON.parse(value)
+      const {article,prix,_id} = JSON.parse(value)
       const updatedList = this.state.factureArticleList.map((item, i) =>
-        i === index ? { ...item, article,prix  } : item
+        i === index ? { ...item, article,prix,_id } : item
       );
       return this.setState({ factureArticleList: updatedList });
 
@@ -163,7 +163,10 @@ class CreerFacture extends Component {
                       <button
                         type="button"
                         onClick={this.handleAddArticle}
-                        className="bg-violet-400 px-2 h-10 flex items-center"
+                        className="px-2 h-10 flex items-center"
+                        style={{
+                          background: theme.palette.secondary.main, color: theme.palette.background.default
+                      }}
                       >
                         <AiOutlinePlus className="mr-3" /> Ajouter Article
                       </button>
@@ -191,6 +194,7 @@ class CreerFacture extends Component {
                                   id={`article${index}`}
                                   className="bg-transparent"
                                 >
+                                  <option value="">Selectionner</option>
                                   {produitsData &&
                                     produitsData.map((article, i) => (
                                       <option key={i} value={JSON.stringify(article)}>
@@ -241,7 +245,6 @@ class CreerFacture extends Component {
                                 />
                               </td>
                               <td className="px-5">
-                                <AiOutlineEye />
                               </td>
                               <td className="px-3" onClick={() => this.handleDelete(index)}>
                                 <FaRegTrashCan />
@@ -253,7 +256,10 @@ class CreerFacture extends Component {
                     </div>
                     <div className="flex flex-row w-full justify-end items-end">
                       <input
-                        className="bg-violet-400 px-2 h-10"
+                        className="px-2 h-10"
+                        style={{
+                          background: theme.palette.secondary.main, color: theme.palette.background.default
+                      }}
                         type="submit"
                         value="Terminer"
                       />

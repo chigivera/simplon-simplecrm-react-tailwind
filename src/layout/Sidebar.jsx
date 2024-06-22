@@ -44,9 +44,8 @@ class Sidebar extends React.Component {
             },
         ]
         return (
-            <div className="sidebar w-60 flex flex-col min-h-screen" 
+            <div className="sidebar w-60 h-full flex flex-col min-h-screen" 
             style={{
-                height:'100%',
                 backgroundColor: theme.palette.background.default,
                 color: theme.palette.primary.main,
                 padding: "10px",

@@ -28,7 +28,11 @@ class Navbar extends React.Component {
                     </div>
                     <div className="options w-auto inline-flex flex-row justify-between items-center">
                         <button onClick={toggleTheme}>{isLightTheme ? <AiOutlineSun/> : <AiOutlineMoon/> }</button>
-                        <a href='/ajouterFacture' className="items-center flex ml-3 px-3 border-2 border-violet-400 bg-violet-400 hover:bg-white"><AiOutlinePlus className="mr-2"/>Creer Facture</a>
+                        <a href='/ajouterFacture' className="items-center flex ml-3 px-3 "
+                        style={{
+                            background: theme.palette.secondary.main, color: theme.palette.background.default
+                        }}
+                        ><AiOutlinePlus className="mr-2"/>Creer Facture</a>
                         <div className="action mx-3">
                            Profile
                         </div>

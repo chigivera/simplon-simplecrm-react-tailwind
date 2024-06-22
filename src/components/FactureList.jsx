@@ -3,7 +3,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { ThemeContext } from '../context/ThemeContext';
 import { DataContext } from '../context/DataContext';
-import DetailsFacture from './DetailsFacture';
+import ArticleList from './ArticleList';
 
 class FactureList extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class FactureList extends Component {
                 const { isLightTheme, light, dark } = themeContext;
                 const theme = isLightTheme ? light : dark;
                 return (
-                  <div className="flex w-fit flex-row justify-center p-5 pb-0">
+                  <div className="flex w-full flex-row justify-center p-5 pb-0">
                     <table className="table-auto w-full h-fit" style={{ backgroundColor: theme.palette.background.default, color: theme.palette.primary.main }}>
                       <thead>
                         <tr>
@@ -43,7 +43,6 @@ class FactureList extends Component {
                           <th className="text-start px-2">H.T</th>
                           <th className="text-start px-2">TVA</th>
                           <th className="text-start px-2">TTC</th>
-                          <th></th>
                           <th></th>
                         </tr>
                       </thead>
@@ -60,14 +59,12 @@ class FactureList extends Component {
                               <td className="px-3">
                                 <AiOutlineEye onClick={() => this.toggleDetails(facture._id, facture.factureArticleList)} />
                               </td>
-                              <td className="px-3">
-                                <FaRegTrashCan />
-                              </td>
+                       
                             </tr>
                             {this.state.detailsVisibleFor === facture._id && (
                               <tr>
                                 <td colSpan="8">
-                                  <DetailsFacture handleToggle={() => this.toggleDetails(null, null)} articles={this.state.articles} />
+                                  <ArticleList handleToggle={() => this.toggleDetails(null, null)} articles={this.state.articles} />
                                 </td>
                               </tr>
                             )}

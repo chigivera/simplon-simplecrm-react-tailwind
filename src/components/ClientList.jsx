@@ -69,7 +69,7 @@ class ClientList extends Component {
           <th className="text-start px-2">PHONE</th>
           <th className="text-start px-2">ADDRESS</th>
 
-          <th className="w-10"></th>
+          {/* <th className="w-10"></th> */}
           <th className="w-10"></th>
       </tr>
       {clients && clients.map(client=>(
@@ -80,7 +80,7 @@ class ClientList extends Component {
           <td className="px-3">{client.email}</td>
           <td className="px-3">{client.phone}</td>
           <td className="px-3">{client.address}</td>
-          <td className=" px-3"><AiOutlineEye/></td>
+          {/* <td className=" px-3"><AiOutlineEye/></td> */}
           <td className="px-3"><FaRegTrashCan/></td>
       </tr>
       ))}

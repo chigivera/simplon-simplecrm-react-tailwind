@@ -7,6 +7,7 @@ export class Metric extends Component {
   render() {
     const { isLightTheme,light ,dark } = this.context; // Access the theme context
     const theme = isLightTheme? light : dark
+    const { title, icon, data, records } = this.props
     return (
         <div className="w-1/4 rounded-lg flex border-b-4 justify-between px-3 py-4 mx-3"
         style={{
@@ -16,16 +17,17 @@ export class Metric extends Component {
         }}
         >
         <div className="flex flex-col ">
-            <h1>All Payments</h1>
-            <h1><b>$1,999</b></h1>
-            <span className="border-l-2 border-r-2 mt-3 px-3 rounded-lg" 
-      style={{ borderColor: theme.palette.primary.main }}>
-
-            all Records
-            </span>
+            <h1>{title}</h1>
+            <h1><b>{data}</b></h1>
+            <span className="border-l-2 border-r-2 mt-3 px-3 rounded-lg w-fit" 
+      style={{ borderColor: theme.palette.primary.main }}>{records} Records</span>
         </div>
-        <div className="flex">
-            <AiFillDollarCircle size={50}/>
+        <div className="flex text-4xl"
+        style={{
+          color: theme.palette.secondary.main
+        }}
+        >
+           {icon}
         </div>
     </div>
     )
